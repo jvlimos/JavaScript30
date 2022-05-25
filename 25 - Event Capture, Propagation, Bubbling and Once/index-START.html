@@ -3,6 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>Understanding JavaScript's Capture</title>
+	<style>
+		html {
+			box-sizing: border-box;
+		}
+		
+		*, *:before, *:after { 
+			box-sizing: inherit; 
+		}
+	
+		div {
+			width: 100%;
+			padding: 100px;
+		}
+	
+		.one {
+			background: thistle;
+		}
+	
+		.two {
+			background: mistyrose;
+		}
+	
+		.three {
+			background: coral;
+		}
+	</style>
 </head>
 <body class="bod">
 
@@ -13,35 +39,25 @@
     </div>
   </div>
 
-<style>
-  html {
-    box-sizing: border-box;
-  }
-  
-  *, *:before, *:after { 
-    box-sizing: inherit; 
-  }
 
-  div {
-    width: 100%;
-    padding: 100px;
-  }
-
-  .one {
-    background: thistle;
-  }
-
-  .two {
-    background: mistyrose;
-  }
-
-  .three {
-    background: coral;
-  }
-</style>
 
 <button></button>
 <script>
+
+	const divs = document.querySelectorAll('div');
+
+	divs.forEach(div => div.addEventListener('click', (e) => {
+		console.log(div.classList.value);
+		e.stopPropagation(); // stops bubbling (if capture: false) or sinking (if capture: true)
+	}, {
+		capture: false,
+		// capture: true // can't have a ; after; default is false; applies function from top to bottom (e.g. from one > two > three)
+		// once: true // function can only be ran once
+	} // third argument of addEventListener is an options object
+	));
+
+	const btn = document.querySelector('button');
+	btn.addEventListener('click', e => console.log('Click!!!!'), {once: true});
 
 </script>
 </body>

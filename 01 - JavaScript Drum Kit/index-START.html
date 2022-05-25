@@ -59,6 +59,34 @@
 
 <script>
 
+	window.addEventListener('keydown', e => {
+		const audio = document.querySelector(`audio[data-key='${e.keyCode}']`);
+		if (!audio) return;
+		audio.currentTime = 0; // if pressed again, will rewind audo to the start
+		audio.play();
+
+		const div = document.querySelector(`div[data-key='${e.keyCode}']`);
+		div.classList.toggle('playing');
+	});
+
+	// window.addEventListener('keyup', e => {
+	// 	const div = document.querySelector(`div[data-key='${e.keyCode}']`);
+	// 	div.classList.remove('playing');
+	// });
+
+	// const keys = document.querySelectorAll('.key');
+	// keys.forEach(key => key.addEventListener('transitionend', () => {
+	// 	key.classList.remove('playing');
+	// }));
+
+	function removeTransition(e) {
+		if (e.propertyName !== 'transform') return; // multiple events will be found, this filters out all events not related to 'transform'
+		this.classList.remove('playing'); // this. = element being called atm
+	}
+
+	const keys = document.querySelectorAll('.key');
+	keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
 </script>
 
 
