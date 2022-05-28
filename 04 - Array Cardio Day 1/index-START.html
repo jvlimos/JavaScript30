@@ -148,6 +148,25 @@
 		// }, {}); // creates the empty object to begin with
 
 
+		// exercises from https://www.youtube.com/watch?v=s1XVfm5mIuU
+		const people2 = [
+			{name: 'Kyle', age: 26},
+			{name: 'John', age: 31},
+			{name: 'Sally', age: 42},
+			{name: 'Jill', age: 42},
+			{name: "Jill", age: 42}
+		];
+
+		// group people accdg to age
+		const groupedPeople = people2.reduce((group, item) => {
+			const age = item.age;
+			if (!group[age]) group[age] = [];
+			group[age].push(item.name); // need to use push() instead of += because we are adding in an array and not a string (that concatenates instead)
+			return group;
+		}, {});
+		
+
+
 
   </script>
 </body>
