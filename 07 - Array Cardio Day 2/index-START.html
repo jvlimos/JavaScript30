@@ -7,62 +7,137 @@
 <body>
   <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
   <script>
-    // ## Array Cardio Day 2
+    // // ## Array Cardio Day 2
 
-    const people = [
-      { name: 'Wes', year: 1988 },
-      { name: 'Kait', year: 1986 },
-      { name: 'Irv', year: 1970 },
-      { name: 'Lux', year: 2015 }
-    ];
+    // const people = [
+    //   { name: 'Wes', year: 1988 },
+    //   { name: 'Kait', year: 1986 },
+    //   { name: 'Irv', year: 1970 },
+    //   { name: 'Lux', year: 2015 }
+    // ];
 
-    const comments = [
-      { text: 'Love this!', id: 523423 },
-      { text: 'Super good', id: 823423 },
-      { text: 'You are the best', id: 2039842 },
-      { text: 'Ramen is my fav food ever', id: 123523 },
-      { text: 'Nice Nice Nice!', id: 542328 }
-    ];
+    // const comments = [
+    //   { text: 'Love this!', id: 523423 },
+    //   { text: 'Super good', id: 823423 },
+    //   { text: 'You are the best', id: 2039842 },
+    //   { text: 'Ramen is my fav food ever', id: 123523 },
+    //   { text: 'Nice Nice Nice!', id: 542328 }
+    // ];
 
-    // Some and Every Checks
-    // Array.prototype.some() // is at least one person 19 or older?
+    // // Some and Every Checks
+    // // Array.prototype.some() // is at least one person 19 or older?
 
-		const hasAdult = people.some(person => (new Date()).getFullYear() - person.year >= 19); // (new Date()).getFullYear() gets current year
+		// const hasAdult = people.some(person => (new Date()).getFullYear() - person.year >= 19); // (new Date()).getFullYear() gets current year
 
-    // Array.prototype.every() // is everyone 19 or older?
+    // // Array.prototype.every() // is everyone 19 or older?
 
-		const allAdults = people.every(person => (new Date()).getFullYear() - person.year >= 19);
+		// const allAdults = people.every(person => (new Date()).getFullYear() - person.year >= 19);
 
-    // Array.prototype.find()
-    // Find is like filter, but instead returns just the one you are looking for
-    // find the comment with the ID of 823423
+    // // Array.prototype.find()
+    // // Find is like filter, but instead returns just the one you are looking for
+    // // find the comment with the ID of 823423
 
-		const findComment = comments.find(comment => comment.id === 823423); // arrow function returns true, thus find function retuns comment
+		// const findComment = comments.find(comment => comment.id === 823423); // arrow function returns true, thus find function retuns comment
 
-    // Array.prototype.findIndex()
-    // Find the comment with this ID
-    // delete the comment with the ID of 823423
-		// return new array without deleted comment
+    // // Array.prototype.findIndex()
+    // // Find the comment with this ID
+    // // delete the comment with the ID of 823423
+		// // return new array without deleted comment
 
-		const findCommentIndex = comments.findIndex(comment => comment.id === 823423);
+		// const findCommentIndex = comments.findIndex(comment => comment.id === 823423);
 
-		// comments.splice(findCommentIndex, 1);
+		// // comments.splice(findCommentIndex, 1);
 
-		// OR:
+		// // OR:
 
-		const newComments = comments.slice(0, findCommentIndex);
-		comments.slice(findCommentIndex + 1).forEach((comment => newComments.push(comment)));
+		// const newComments = comments.slice(0, findCommentIndex);
+		// comments.slice(findCommentIndex + 1).forEach((comment => newComments.push(comment)));
 
-		// OR:
-		const newComments2 = comments.slice(0, findCommentIndex);
-		newComments2.push(...(comments.slice(findCommentIndex + 1))); // without ... (spread operator) returns 2 arrays which is not what we want; we want an array with all the items unnested
+		// // OR:
+		// const newComments2 = comments.slice(0, findCommentIndex);
+		// newComments2.push(...(comments.slice(findCommentIndex + 1))); // without ... (spread operator) returns 2 arrays which is not what we want; we want an array with all the items unnested
 		
-		// OR easiest among previous examples:
+		// // OR easiest among previous examples:
 
-		const newComments3 = [
-			...comments.slice(0, findCommentIndex),
-			...comments.slice(findCommentIndex + 1)
-		]; // without ... (spread operator) returns 2 arrays which is not what we want; we want an array with all the items unnested
+		// const newComments3 = [
+		// 	...comments.slice(0, findCommentIndex),
+		// 	...comments.slice(findCommentIndex + 1)
+		// ]; // without ... (spread operator) returns 2 arrays which is not what we want; we want an array with all the items unnested
+
+
+
+
+		// // code with https://www.youtube.com/watch?v=NIq3qLaHCIs
+		// function sumAndProduct(a, b) {
+		// 	return [a + b, a * b, a / b];
+		// }
+		// const [sum, product, division = 'No div'] = sumAndProduct(2, 3);
+		// console.log([sum, product, division])
+
+		const personOne = {
+			name: 'Kyle',
+			age: 24,
+			address: {
+				city: 'Somewhere',
+				state: 'One of them'
+			}
+		};
+
+		const personTwo = {
+			age: 32,
+			address: {
+				city: 'Somewhere else',
+				state: 'Another one of them'
+			}
+		};
+
+		// // changes variable name from key to specified
+		// const {name: firstName, address: home, favoriteFood = 'Rice'} = personOne; // 'Rice' default value of favoriteFood
+		// console.log(firstName, home, favoriteFood);
+
+		// const {name: firsNam = 'John', address: hom} = personTwo;
+		// console.log(firsNam, hom, favoriteFood);		
+
+		// const {name, ...rest} = personOne;
+		// console.log(rest);
+
+		// const {...all} = personOne;
+		// console.log(all);
+
+		// // nested object as variable
+		// const {name, address: {city}} = personOne;
+		// console.log({name, address: {city}})
+		
+		const person3 = {
+			name: 'Kyle',
+			age: 24,
+			address: {
+				city: 'Somewhere',
+				state: 'One of them'
+			}
+		};
+
+		const person4 = {
+			age: 32,
+			favoriteFood: 'Watermelon',
+			address: {
+				city: 'Somewhere',
+				state: 'One of them'
+			},
+		};
+
+		// combine person3 with person4 and overwrite overlapping properties of person3:
+
+		const personThree = { ...person3, ...person4 }; // overwrites existing properties of person3
+
+		// function printUser(user) {
+		// 	console.log( `Name is: ${ user.name }. Age is: ${ user.age }` );
+		// }
+
+		// OR much better and shorter use an object with 3 properties as a single parameter:
+		function printUser({ name, age, mood = 'ok' }) {
+			console.log(`Name is: ${name}. Age is: ${age}. Mood: ${mood}`);
+		}
 
   </script>
 </body>
