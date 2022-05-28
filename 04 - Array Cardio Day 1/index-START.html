@@ -27,6 +27,59 @@
       { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
     ];
 
+		const numbers = [1, 2, 3, 4, 5, 6];
+		const gThan2 = numbers.filter(number => number > 2); // [3, 4, 5, 6]
+		// console.table(gThan2);
+
+		const firstNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
+
+		// const yearMinus100 = inventors.map(inventor => inventor.year -= 1000);
+
+		const orderedYear = inventors.sort((a, b) => a.year < b.year ? 1 : -1); // no curly brackets allowed for function
+
+		const numbers2 = [2, 3, 1, 5, 4];
+		const ordered = numbers2.sort((a, b) => a > b ? 1 : -1)
+
+		const totalYears = orderedYear.reduce((total, inventor) => {
+			return total + (inventor.passed - inventor.year);
+		}, 0);
+		// console.log(totalYears)
+		// OR create an array of years lived of each one with map, then on that array you do the simplest possible a + b. This way you don't have to add a 'starting'/default total value of 0:
+		const yearslived = inventors.map(inventor =>{
+      return (inventor.passed -inventor.year);
+    })
+    const allTogether = yearslived.reduce((a, b) => a + b);
+    // console.log(allTogether)
+
+		// Round all the numbers and display the sum:
+
+		const numbers3 = [15.5, 2.3, 1.1, 4.7];
+		numbers.reduce(getSum, 0);
+		function getSum(total, num) {
+			return total + Math.round(num);
+		}
+
+		// sort inventory by years lived
+		const withYearsLived = inventors.map(inventor => {
+			inventor.yearsLived = inventor.passed - inventor.year;
+		}); // returns inventors array with new yearsLived property for each inventor
+		const orderedYearsLived = inventors.sort((a, b) => {
+			return a.yearsLived < b.yearsLived ? -1 : 1;
+		}); // don't forget return statement
+		// console.table(orderedYearsLived)
+
+		// sort inventors alphabetically by last name
+		const orderedLastName = inventors.sort((a, b) => a.last > b.last ? 1 : -1);
+
+
+		// // from https://commons.wikimedia.org/wiki/Category:Boulevards_in_Paris
+		// const links = document.querySelectorAll('.CategoryTreeSection a');
+		// const linksArray = Array.from(links);
+		// const linksText = linksArray.map(link => link.textContent);
+		// const de = linksText.filter(link => link.includes(' de '));
+
+
+
     const people = [
       'Bernhard, Sandra', 'Bethea, Erin', 'Becker, Carl', 'Bentsen, Lloyd', 'Beckett, Samuel', 'Blake, William', 'Berger, Ric', 'Beddoes, Mick', 'Beethoven, Ludwig',
       'Belloc, Hilaire', 'Begin, Menachem', 'Bellow, Saul', 'Benchley, Robert', 'Blair, Robert', 'Benenson, Peter', 'Benjamin, Walter', 'Berlin, Irving',
@@ -35,6 +88,24 @@
       'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
     ];
     
+		// split every item in people into two items of a new array, namely first and last
+		const personArray = people.map(person => {
+			const [last2, first2] = person.split(', '); // automatically assigns every item from the split to their own variables
+			[...person] = [last2, first2];
+			return person;
+		});
+
+		// console.table(personArray);
+
+		// sort people according to first name
+		const orderedPeople = personArray.sort((a, b) => a[1] > b[1] ? 1 : -1);
+		// console.table(orderedPeople);
+
+		// sort people according to last name
+		const orderedPeople2 = personArray.sort((a, b) => a[0] > b[0] ? 1 : -1);
+		// console.table(orderedPeople2);
+
+
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
 
@@ -58,7 +129,25 @@
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogo-stick', 'pogo-stick' ];
+
+		const countInstance = data.reduce((obj, item) => {
+			if (!obj[item]) obj[item] = 0;
+			obj[item]++;
+			return obj;
+		}, {});
+
+
+
+
+
+		// const countInstance = data.reduce((totalInstance, item) => {
+		// 	if (!totalInstance[item]) totalInstance[item] = 0; // checks if item exists in object, if not, return it as a new item in the object
+		// 	totalInstance[item]++; // if item exists, increment its instance (not yet returned to the object)
+		// 	return totalInstance; // returns it to the object (DON'T FORGET RETURN STATEMENTS OR IT WILL NOT WORK)
+		// }, {}); // creates the empty object to begin with
+
+
 
   </script>
 </body>
